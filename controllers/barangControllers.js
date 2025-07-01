@@ -45,28 +45,28 @@ const barangControllers = {
         }
     },
 
-    // editBarang: async (req, res) => {
-    //     try {
-    //         const user_id = req.user.id;
-    //         const { nama, foto, harga, stok } = req.body;
-    //         const barang = await Barang.findById(req.params.id);
-    //         if (!barang) {
-    //             return res.status(404).json({ message: 'Barang tidak ditemukan' });
-    //         }
-    //         barang.user_id = user_id;
-    //         barang.nama = nama;
-    //         barang.foto = foto;
-    //         barang.harga = harga;
-    //         barang.stok = stok;
-    //         await barang.save();
-    //         res.json({ message: 'Barang berhasil diubah' });
-    //     } catch (error) {
-    //         console.error(error);
-    //         res.status(500).json({ message: 'Terjadi kesalahan server' });
-    //     }
-    // },
-
     editBarang: async (req, res) => {
+        try {
+            const user_id = req.user.id;
+            const { nama, foto, harga, stok } = req.body;
+            const barang = await Barang.findById(req.params.id);
+            if (!barang) {
+                return res.status(404).json({ message: 'Barang tidak ditemukan' });
+            }
+            barang.user_id = user_id;
+            barang.nama = nama;
+            barang.foto = foto;
+            barang.harga = harga;
+            barang.stok = stok;
+            await barang.save();
+            res.json({ message: 'Barang berhasil diubah' });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Terjadi kesalahan server' });
+        }
+    },
+
+    editStatusBarang: async (req, res) => {
         try {
             const user_id = req.user.id;
             const status = req.body.status;

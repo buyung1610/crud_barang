@@ -11,7 +11,8 @@ router.use(verifyToken);
 router.get('/', barangControllers.getAllBarang);          // GET semua barang
 router.get('/:id', barangControllers.getBarangById);      // GET satu barang
 router.post('/', upload.single('foto'), barangControllers.createBarang);         // POST tambah
-router.put('/:id', barangControllers.editBarang);         // PUT edit
+router.put('/:id', barangControllers.editBarang); 
+router.put('/status/:id', barangControllers.editStatusBarang);        // PUT edit
 router.delete('/:id', barangControllers.deleteBarang);    // DELETE
 
 module.exports = router;
